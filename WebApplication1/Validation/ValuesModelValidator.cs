@@ -14,6 +14,8 @@ namespace WebApplication1.Validation
         {
             RuleFor(x => x.Values).NotNull();
             RuleFor(x => x.Values).NotEmpty();
+
+            When(x => x.IsBilling, () => { RuleFor(x => x.Address).NotNull().NotEmpty(); });
         }
     }
 }

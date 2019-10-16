@@ -86,6 +86,8 @@ namespace NSwag.Extensions.FluentValidation
 
             return validationRules.OfType<PropertyRule>()
                 .Where(propertyRule =>
+                    propertyRule.Condition == null &&
+                    propertyRule.AsyncCondition == null &&
                     !string.IsNullOrWhiteSpace(propertyRule.PropertyName) &&
                     propertyRule.PropertyName.Equals(propertyName, StringComparison.InvariantCultureIgnoreCase)
                 ).SelectMany(propertyRule => propertyRule.Validators);
