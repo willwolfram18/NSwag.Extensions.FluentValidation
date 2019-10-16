@@ -13,5 +13,7 @@ namespace WebApplication1.Models
         public bool IsBilling { get; set; }
 
         public string Address { get; set; }
+
+        public SubModel Foo { get; set; }
     }
 }

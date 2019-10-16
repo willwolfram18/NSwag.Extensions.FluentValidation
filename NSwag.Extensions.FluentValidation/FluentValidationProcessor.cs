@@ -54,6 +54,7 @@ namespace NSwag.Extensions.FluentValidation
 
                 foreach (var parameterProperty in operationParameter.ActualSchema.Properties)
                 {
+                    // TODO: Check for ChildValidatorAdaptors on JsonObjectType.Object values
                     var validationRules = GetValidatorsForProperty(validator, parameterProperty.Key);
 
                     foreach (var validationRule in validationRules)
@@ -68,6 +69,13 @@ namespace NSwag.Extensions.FluentValidation
                         {
                             parameterProperty.Value.MinLength = 1;
                         }
+                        
+                        // TODO: Other rules to check for:
+                        // * ILengthValidator
+                        // * IRegularExpressionValidator
+                        // * IComparisonValidator
+                        // * IBetweenValidator
+                        // * IEmailValidator
                     }
                 }
             }

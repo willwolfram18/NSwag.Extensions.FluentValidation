@@ -10,12 +10,16 @@ namespace WebApplication1.Validation
 {
     public class ValuesModelValidator : AbstractValidator<ValuesModel>
     {
-        public ValuesModelValidator()
+        public ValuesModelValidator(IValidator<SubModel> subModelValidator)
         {
             RuleFor(x => x.Values).NotNull();
             RuleFor(x => x.Values).NotEmpty();
 
             When(x => x.IsBilling, () => { RuleFor(x => x.Address).NotNull().NotEmpty(); });
+
+            RuleSet("Example", () => { RuleFor(x => x.Address).NotNull().NotEmpty(); });
+
+            RuleFor(x => x.Foo).SetValidator(subModelValidator);
         }
     }
 }
